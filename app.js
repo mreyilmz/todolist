@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-require("dotenv").config()
+require("dotenv").config();
 
-username = process.env.USERNAME;
-password = process.env.PASSWORD;
+const username = process.env.USER_NAME;
+const password= process.env.PASS_WORD;
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -14,6 +15,7 @@ app.set("view engine", "ejs");
 
 main().catch(err => console.log(err));
 async function main() {
+
     // todolistDB database'ine bağlandık.
     await mongoose.connect('mongodb+srv://'+username+':'+password+'@cluster0.1wtzxtq.mongodb.net/todolistDB');
     const itemsSchema = new mongoose.Schema ({
